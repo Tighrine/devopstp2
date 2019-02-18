@@ -1,0 +1,68 @@
+html
+  head
+    title= title
+    style
+      include bootstrap.min.css
+  body
+    h1= message
+    table.table.table-striped
+      thead
+        tr
+          th(scop="col") Prénom
+          th(scop="col") Nom
+          th(scop="col") Email
+      tbody
+        each user in users
+          tr
+            th= user.first_name
+            th= user.last_name
+            th= user.email  
+    block content
+    .main.container
+      .row
+        .col-md-6.col-md-offset-3
+          h1.display-4.m-b-2 Sign Up
+          // register form
+          form(method='POST' action='/')
+            div.form-group
+              label(for='surname') Prénom:
+              input#surname.form-control(type='text', placeholder='Jean' name='surname')
+            div.form-group
+              label(for='name') Nom:
+              input#name.form-control(type='text', placeholder='Jacque' name='name')
+            div.form-group
+              label(for='email') Email:
+              input#email.form-control(type='email', placeholder='jean.jacque@email.com' name='email')
+            div.form-group
+              label(for='pw') Mot de passe:
+              input#pw.form-control(type='password' name='password')
+            div.form-group
+              label(for='pw2') Confirmation:
+              input#pw2.form-control(type='password' name='confirmPassword')
+            button.btn.btn-primary(type='submit', id="register") Sign up
+            script
+              | submit = document.getElementsByTagName("button")[0]
+              | /*submit.onclick = e => {
+              |   e.preventDefault()
+              |   const surname = document.getElementById('surname').value
+              |   const name = document.getElementById('name').value
+              |   const password = document.getElementById('pw').value
+              |   const pwd2 = document.getElementById('pw2').value
+              |   const email = document.getElementById('email').value
+              |   const data = {"first_name": surname , "last_name": name, "password": password, "email": email}
+              |   console.log(data)
+              |   if(password !== pwd2) alert('password not match !!')
+              |   else{
+              |      fetch('http://localhost:80/register', {
+              |       method: "POST",
+              |       mode: "cors",
+              |        headers: {
+              |         "Access-Control-Allow-Origin": "*",
+              |         "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",  
+              |         "Content-Type": "application/json"
+              |        },
+              |        body: JSON.stringify(data),
+              |      })
+              |      .then(response => Location.reload(false));
+              |    }          
+              | }*/
